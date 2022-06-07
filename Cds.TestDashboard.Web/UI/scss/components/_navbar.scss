@@ -1,0 +1,59 @@
+.navigation {
+    background-color: #06B9B2;
+    height: $navbar-height;
+    color: white;
+    border-radius: 0px;
+    right: 0px;
+    left: 0px;
+
+    .navigation-content {
+        margin-left: 10px;
+        margin-right: 10px;
+        display: grid;
+        grid-template-columns: 8fr 4fr;
+
+        .navigation-header {
+            img {
+                height: $navbar-height;
+            }
+
+            @include breakpoint(mobilerotate) {
+                display: none;
+            }
+    
+            @include breakpoint(mobile) {
+                display: none;
+            }
+        }
+
+        .navigation-actions {
+            text-align: right;
+            font-size: xx-large;
+
+            a {
+                color: white;
+            }
+        }
+    
+        .show-sidebar {
+            font-size: xx-large;
+            margin-left: 10px;
+    
+            &:hover {
+                cursor: pointer;
+            }
+    
+            @include breakpoint(largedesktop) {
+                display: none;
+            }
+            @include breakpoint(desktop) {
+                display: none;
+            }
+            @include breakpoint(tablet) {
+                display: none;
+            }
+        }
+
+    }
+    
+}

@@ -1,0 +1,26 @@
+.action-block {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: block;
+    position: relative;
+    transition: transform .2s;
+    color: black;
+    &_content {
+        position: relative;
+        padding: 10px;
+        text-align: center;
+        top: 50%;
+    }
+
+    &:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+        background-color: $cyan;
+        color:white;
+
+        .action-block_content {
+            svg {
+                fill: white;
+            }
+        }
+    }
+}

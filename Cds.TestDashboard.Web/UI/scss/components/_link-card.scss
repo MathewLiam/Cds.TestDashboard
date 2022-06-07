@@ -1,0 +1,25 @@
+.link-card {
+    background-color: $light-blue;
+    border-bottom: $disabled 5px solid;
+    padding: 3px;
+    a {
+        color: $disabled;
+    }
+    
+
+    &:hover {
+        border-bottom-color: $cyan;
+        a {
+            color: $cyan;
+            text-decoration: none;
+        }
+    }
+
+    &:active {
+        background-color: $cyan;
+        border-bottom-color: $cyan;
+        a {
+            color: white;
+        }
+    }
+}

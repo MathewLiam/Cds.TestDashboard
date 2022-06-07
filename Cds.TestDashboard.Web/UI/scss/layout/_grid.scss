@@ -1,0 +1,15 @@
+.row {
+    div[class*="col-"] {
+        margin-top: 15px;
+    }    
+}
+
+.container {
+    @include breakpoint(largedesktop) {
+        padding-top: 10px;
+    }
+
+    @include breakpoint(desktop) {
+        padding: 10px;
+    }
+}

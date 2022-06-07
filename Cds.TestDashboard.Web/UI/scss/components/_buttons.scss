@@ -1,0 +1,20 @@
+.button {
+    border-radius: 0px;
+    border: none;
+    padding: 15px;
+}
+
+.button-primary {
+    background-color: #3C8EE8;
+    color: white;
+}
+
+.button:hover {
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.build-button {
+    &.build-fail {
+        background-color: red;
+    }
+}

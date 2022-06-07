@@ -1,0 +1,13 @@
+.create-environment-widget {
+    background-color: transparent;
+    border: 3px solid #f1f1f1;
+    height: $environment-widget-height;
+    font-size: 60px;
+    color: #f1f1f1;
+
+    &:hover {
+        cursor: pointer;
+        color: $cyan;
+        border-color: $cyan;
+    }
+}

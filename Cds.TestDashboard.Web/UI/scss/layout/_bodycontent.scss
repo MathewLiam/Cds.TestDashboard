@@ -1,0 +1,26 @@
+main {
+    margin-bottom: 20px;
+    margin-top: $navbar-height;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-left: auto;
+    padding-right: auto;
+
+    @include breakpoint(largedesktop) {
+        width: 1500px;
+        margin-left: $sidebar-width;
+        padding-left: 20px;
+    }
+
+    @include breakpoint(desktop) {
+        width: 1000px;
+        margin-left: $sidebar-width;
+        padding-left: 20px;
+    }
+
+    @include breakpoint(tablet) {
+        width: 600px;
+        margin-left: $sidebar-width;
+        padding-left: 20px;
+    }
+}
