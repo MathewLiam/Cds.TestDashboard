@@ -5,17 +5,12 @@
 }
 
 .dashboard {
-    background-color: black;
-    color: white;
+    background-color: $grey-dark;
+    color: $white;
     width: 100vw;
     height: 100vh;
 
-    &_heading {
-        h1 {
-            text-align: center;
-            margin-block-start: 0px;
-        }
-    }
+    
 
     &_wrapper {
         padding: 10px;
@@ -30,8 +25,8 @@
     }
 
     &_tile {
-        background-color: $cyan;
-        color: white;
+        background-color: $teal;
+        color: $white;
     }
 }
 

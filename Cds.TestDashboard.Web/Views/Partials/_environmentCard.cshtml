@@ -1,0 +1,29 @@
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+<div class="environment-card">
+    <div class="environment-card-wrapper">
+        <div class="card-front">
+            <div class="environment-card_content u-centre">
+                <div class="card-icon"><i class="fa fa-database"></i></div>
+                <div class="card-title">@Model.Name</div>
+            </div>
+        </div>
+        <div class="card-back">
+            @for (var i = 0; i < 4; i++)
+            {
+                if (i < Model.Children<ContentModels.Job>().Count())
+                {
+                    <a href="@(((IPublishedContent)Model.Children<ContentModels.Job>().ToList().ElementAt(i)).Url())" class="card-back_item">
+                        <div class="environment-card_content u-centre">@(((IPublishedContent)Model.Children<ContentModels.Job>().ToList().ElementAt(i)).Name)</div>
+                    </a>
+                } else
+                {
+                    <div class="card-back_item">
+
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>

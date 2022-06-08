@@ -1,0 +1,58 @@
+.build-card {
+    background-color: transparent;
+    height: 320px;
+    margin-bottom: 20px;
+    .build-card-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+        .card-front {
+            color: white;
+            
+            .card-title {
+                font-weight: bold;
+                font-size:xx-large;
+            }
+            
+            .card-icon {
+                font-size: 70px;
+            }
+        }
+
+        .card-back {
+            background-color: $blue-light;
+            color: $white;
+            transform: rotateY(180deg);
+            
+            .btn {
+                display: block;
+                margin-bottom: 15px;
+                width: 100%;
+                border-radius: 0px;
+                padding: 6px;
+            }
+        }
+
+        .card-front, .card-back {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden; /* Safari */
+            backface-visibility: hidden;
+        }
+
+    }
+
+    &_content {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    &:hover .build-card-wrapper {
+        transform: rotateY(180deg);
+    }
+}
+

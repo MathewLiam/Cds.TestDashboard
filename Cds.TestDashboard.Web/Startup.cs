@@ -65,6 +65,12 @@ namespace Cds.TestDashboard.Web
                 })
                 .WithEndpoints(u =>
                 {
+                    u.EndpointRouteBuilder.MapControllerRoute(
+                        "accounts",
+                        "/account/{action}/{id?}",
+                        new { Controller = "Account", Action = "Index" }
+                        );
+
                     u.UseInstallerEndpoints();
                     u.UseBackOfficeEndpoints();
                     u.UseWebsiteEndpoints();

@@ -1,15 +1,38 @@
 .row {
-    div[class*="col-"] {
-        margin-top: 15px;
-    }    
+    display: grid;
+    column-gap: $gutter-size;
+    grid-template-columns: repeat(12, 1fr);
+    align-items: start;
+    
+    &:not(:last-child) {
+        margin-bottom: 1rem;
+    }
+
+    @for $i from 1 through 12 {
+        .col-#{$i} {
+            @include breakpoint(mobile) {
+                grid-column: span 12;
+            }
+
+            @include breakpoint(tablet) {
+                grid-column: span $i;
+            }
+
+            @include breakpoint(desktop) {
+                grid-column: span $i;
+            }
+
+            @include breakpoint(largedesktop) {
+                grid-column: span $i;
+            }
+        }
+    }
 }
 
 .container {
-    @include breakpoint(largedesktop) {
-        padding-top: 10px;
-    }
+    margin: auto 0;
 
-    @include breakpoint(desktop) {
-        padding: 10px;
+    &:not(::last-child) {
+        margin-bottom: 1rem;
     }
 }

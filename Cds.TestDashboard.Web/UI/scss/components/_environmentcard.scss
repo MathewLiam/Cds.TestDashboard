@@ -1,8 +1,9 @@
 .environment-card {
     background-color: transparent;
-    border: 1px solid #f1f1f1;
-    height: $environment-widget-height;
+    border: 1px solid $white;
+    height: 320px;
     margin-bottom: 20px;
+    
     .environment-card-wrapper {
         position: relative;
         width: 100%;
@@ -12,12 +13,12 @@
         transform-style: preserve-3d;
 
         .card-front {
-            background-color: $cyan;
-            color: white;
+            background-color: $teal;
+            color: $white;
             
             .card-title {
-                font-weight: bold;
-                font-size:xx-large;
+                font-weight: 700;
+                font-size: xx-large;
             }
             
             .card-icon {
@@ -27,7 +28,7 @@
     
         .card-back {
             background-color: transparent;
-            color: white;
+            color: $white;
             display: grid;
             grid-template-columns: 1fr 1fr;
             grid-template-rows: 1fr 1fr;
@@ -35,15 +36,15 @@
             transform: rotateY(180deg);
             
             &_item {
-                background-color: $cyan;
-                color: white;
+                background-color: $teal;
+                color: $white;
                 &.environment-card_content {
                     position: absolute;
                     top:50%;
                 }
 
                 &:hover {
-                    border: white 3px solid;
+                    border: $white 3px solid;
                     cursor: pointer;
                 }
             }

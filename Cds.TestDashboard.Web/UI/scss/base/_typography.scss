@@ -1,11 +1,28 @@
-.navbar-header > h1 {
-    font-size:x-large;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
+$roboto-font: 'Roboto', sans-serif;
+
+p {
+    font-weight: 400;
 }
 
-h2 {
-    &.section-header {
-        text-align: center;
-    }
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6,
+.header-1,
+.header-2,
+.header-3,
+.header-4,
+.header-5,
+.header-6,
+strong,
+b {
+
+    font-weight: 700;
+}
+
+.dashboard_heading > h1 {
+    text-align: center;
+    margin-block-start: 0px;
 }

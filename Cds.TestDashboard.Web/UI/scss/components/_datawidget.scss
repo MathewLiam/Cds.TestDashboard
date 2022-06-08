@@ -1,11 +1,11 @@
 .data-widget {
-    background-color: $light-blue;
+    background-color: $blue-light;
     min-height: 200px;
     max-height: 600px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     .data-widget-heading {
-        background-color: $cyan;
-        color: white;
+        background-color: $teal;
+        color: $white;
         h3 {
             padding: 3px;
         }

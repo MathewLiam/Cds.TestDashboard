@@ -1,6 +1,19 @@
-﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+﻿@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Project>
-@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
 @{
-	Layout = null;
+    Layout = "Master.cshtml";
 }
+
+
+<h1>@Model.Name</h1>
+
+<div class="row">
+    @foreach (var subProject in Model.Children<ContentModels.Project>())
+    {
+        <div class="col-3">
+            <partial name="_environmentCard" model="subProject" />
+        </div>
+    }
+</div>
+

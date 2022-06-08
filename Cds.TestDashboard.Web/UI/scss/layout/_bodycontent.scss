@@ -1,26 +1,38 @@
 main {
-    margin-bottom: 20px;
-    margin-top: $navbar-height;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-left: auto;
-    padding-right: auto;
+    @extend .container;
+    background-color: $grey-light;
+    min-height: 100vh;
 
     @include breakpoint(largedesktop) {
-        width: 1500px;
-        margin-left: $sidebar-width;
-        padding-left: 20px;
+        margin-left: 230px;
     }
 
     @include breakpoint(desktop) {
-        width: 1000px;
-        margin-left: $sidebar-width;
-        padding-left: 20px;
+        margin-left: 230px;
     }
 
     @include breakpoint(tablet) {
-        width: 600px;
-        margin-left: $sidebar-width;
-        padding-left: 20px;
+        margin-left: 230px;
+    }
+
+    .main-content {
+        padding-top: 20px;
+        margin: auto;
+
+        @include breakpoint(largedesktop) {
+            max-width: 75vw;
+
+        }
+
+        @include breakpoint(desktop) {
+            max-width: 75vw;
+            
+        }
+
+        @include breakpoint(tablet) {
+            max-width: 75vw;
+            
+        }
     }
 }
+
