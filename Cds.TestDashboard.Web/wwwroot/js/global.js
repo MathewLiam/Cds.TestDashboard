@@ -16,7 +16,7 @@
   \**************************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
-eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nclass SideBar {\r\n    constructor(_element) {\r\n        this.sidebarElement = _element;\r\n        console.log('creating');\r\n        this.addListeners();\r\n    }\r\n    addListeners() {\r\n        this.sidebarElement.addEventListener('mousedown', () => {\r\n            console.log('mouse down');\r\n            document.addEventListener(\"mousemove\", this.resize, false);\r\n            document.addEventListener(\"mouseup\", () => {\r\n                document.removeEventListener(\"mousemove\", this.resize, false);\r\n            }, false);\r\n        });\r\n    }\r\n    resize(e) {\r\n        const size = `${e.x}px`;\r\n        this.sidebarElement.style.width = size;\r\n    }\r\n}\r\nexports[\"default\"] = SideBar;\r\n\n\n//# sourceURL=webpack://cds.test.dashboard/./Cds.TestDashboard.Web/UI/ts/modules/sidebar/index.ts?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nclass SideBar {\r\n    constructor(_element) {\r\n        this.sidebarElement = _element;\r\n        this.sidebarLinks = _element.querySelectorAll('a');\r\n        this.setActiveTab();\r\n    }\r\n    setActiveTab() {\r\n        console.log(this.sidebarLinks);\r\n        Array.from(this.sidebarLinks).forEach((link) => {\r\n            if (link.href == window.location.href || window.location.href.includes(link.href) && !this.activeLink) {\r\n                link.classList.toggle('active', true);\r\n                this.activeLink = link;\r\n            }\r\n        });\r\n    }\r\n}\r\nexports[\"default\"] = SideBar;\r\n\n\n//# sourceURL=webpack://cds.test.dashboard/./Cds.TestDashboard.Web/UI/ts/modules/sidebar/index.ts?");
 
 /***/ }),
 
@@ -26,7 +26,7 @@ eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\n
   \****************************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
-eval("\r\nvar __importDefault = (this && this.__importDefault) || function (mod) {\r\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\r\n};\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nconst sidebar_1 = __importDefault(__webpack_require__(/*! @modules/sidebar */ \"./Cds.TestDashboard.Web/UI/ts/modules/sidebar/index.ts\"));\r\nlet sidebarElements = document.getElementsByClassName('sidenav');\r\nif (sidebarElements) {\r\n    let sidebar = Array.from(sidebarElements)[0];\r\n    new sidebar_1.default(sidebar);\r\n}\r\n\n\n//# sourceURL=webpack://cds.test.dashboard/./Cds.TestDashboard.Web/UI/ts/root/global.ts?");
+eval("\r\nvar __importDefault = (this && this.__importDefault) || function (mod) {\r\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\r\n};\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nconst sidebar_1 = __importDefault(__webpack_require__(/*! @modules/sidebar */ \"./Cds.TestDashboard.Web/UI/ts/modules/sidebar/index.ts\"));\r\nlet sidebarElements = document.getElementsByClassName('sidebar');\r\nif (sidebarElements) {\r\n    let sidebar = Array.from(sidebarElements)[0];\r\n    new sidebar_1.default(sidebar);\r\n}\r\n\n\n//# sourceURL=webpack://cds.test.dashboard/./Cds.TestDashboard.Web/UI/ts/root/global.ts?");
 
 /***/ })
 

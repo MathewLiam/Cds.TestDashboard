@@ -1,20 +1,25 @@
 ﻿@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 
+@{ 
+    IPublishedContent home = Umbraco.ContentAtRoot().First();
+}
+
 <aside class="sidebar">    
     <ul class="sidebar-menu">
-        @foreach (IPublishedContent project in Umbraco.ContentAtRoot().First().Children<ContentModels.Project>())
+        @foreach (IPublishedContent project in (IEnumerable<IPublishedContent>)home.Children<ContentModels.Project>())
         {
-            <li>
+            <div class="dropdown-btn">
                 <a href="@project.Url()">
                     <span>@project.Name</span>
-                <ul>
-                    @foreach (IPublishedContent subProj in project.Children<ContentModels.Project>())
+                </a>
+                <div class="dropdown-container">
+                    @foreach (IPublishedContent subProj in (IEnumerable<IPublishedContent>)project.Children<ContentModels.Project>())
                     {
-                        <li><a href="@subProj.Url()">@subProj.Name</a></li>
+                        <a href="@subProj.Url()">@subProj.Name</a>
                     }
-                </ul>
-            </li>
+                </div>
+            </div>
         }
     </ul>
 </aside>

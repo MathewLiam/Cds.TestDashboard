@@ -1,6 +1,13 @@
-﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.GeneralContentPage>
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.GeneralContentPage>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 @{
-	Layout = "Master.cshtml";
+    Layout = "Master.cshtml";
 }
+
+<header>
+    <div class="container">
+        <h1>@Model.Name</h1>
+    </div>
+
+    <partial name="_breadcrumb" />
+</header>

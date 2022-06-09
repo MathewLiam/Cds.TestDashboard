@@ -1,5 +1,6 @@
-﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+﻿@{
+    Layout = null;
+}
 
 <!DOCTYPE html>
 <html>
@@ -8,23 +9,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>@Model.Name - CDS Test Dashboard</title>
+    <title>@ViewBag.Title - CDS Test Dashboard</title>
 
     <link rel="stylesheet" type="text/css" href="~/css/main.css" />
 
 </head>
 <body>
-    <partial name="_nav" />
-    
-    <partial name="_sidebar" />
-
     <main>
         @RenderBody()
     </main>
-
-    <footer>
-    </footer>
-
-    <script src="~/js/global.js"></script>
 </body>
 </html>

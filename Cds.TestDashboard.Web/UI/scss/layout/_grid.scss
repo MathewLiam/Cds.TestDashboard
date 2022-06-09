@@ -14,8 +14,12 @@
                 grid-column: span 12;
             }
 
+            @include breakpoint(mobilerotate) {
+                grid-column: span 12;
+            }
+
             @include breakpoint(tablet) {
-                grid-column: span $i;
+                grid-column: span 12;
             }
 
             @include breakpoint(desktop) {
@@ -30,9 +34,35 @@
 }
 
 .container {
-    margin: auto 0;
+    margin: auto;
 
-    &:not(::last-child) {
+    @include breakpoint(largedesktop) {
+        max-width: 75vw;
+
+    }
+
+    @include breakpoint(desktop) {
+        max-width: 75vw;
+        
+    }
+
+    @include breakpoint(tablet) {
+        max-width: 75vw;   
+    }
+
+    @include breakpoint(mobile) {
+        margin: 0 1rem;
+    }
+
+    @include breakpoint(mobilerotate) {
+        margin: 0 1rem;
+    }
+
+    @include breakpoint(tablet) {
+        margin: 0 1rem;
+    }
+
+    &:not(:last-child) {
         margin-bottom: 1rem;
     }
 }

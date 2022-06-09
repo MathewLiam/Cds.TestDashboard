@@ -1,25 +1,22 @@
 export default class SideBar {
     sidebarElement: HTMLElement;
+    sidebarLinks: NodeListOf<HTMLAnchorElement>;
+    activeLink?: HTMLElement;
     
     constructor(_element: HTMLElement) {
         this.sidebarElement = _element;
-        console.log('creating');
-        this.addListeners();
+        this.sidebarLinks = _element.querySelectorAll('a');
+        this.setActiveTab();
     }
 
-    private addListeners() {
-        this.sidebarElement.addEventListener('mousedown', () => {
-            console.log('mouse down');
-            document.addEventListener("mousemove", this.resize, false);
-            document.addEventListener("mouseup", () => {
-                document.removeEventListener("mousemove", this.resize, false);
-            }, false);
-        })
-    }
 
-    private resize(e: MouseEvent) {
-        const size = `${e.x}px`;
-        this.sidebarElement.style.width = size;
+    private setActiveTab() {
+        console.log(this.sidebarLinks);
+        Array.from(this.sidebarLinks).forEach((link: HTMLAnchorElement) => {
+            if (link.href == window.location.href || window.location.href.includes(link.href) && !this.activeLink) {
+                link.classList.toggle('active', true);
+                this.activeLink = link;
+            }
+        });
     }
-
 }

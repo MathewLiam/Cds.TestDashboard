@@ -1,7 +1,5 @@
 main {
-    @extend .container;
-    background-color: $grey-light;
-    min-height: 100vh;
+    margin-top: 1rem;
 
     @include breakpoint(largedesktop) {
         margin-left: 230px;
@@ -16,23 +14,15 @@ main {
     }
 
     .main-content {
-        padding-top: 20px;
-        margin: auto;
-
-        @include breakpoint(largedesktop) {
-            max-width: 75vw;
-
-        }
-
-        @include breakpoint(desktop) {
-            max-width: 75vw;
-            
-        }
-
-        @include breakpoint(tablet) {
-            max-width: 75vw;
-            
-        }
+        @extend .container;
     }
 }
 
+header {
+    @extend .container; 
+
+    border-bottom: 1px solid black;
+    background-color: $white;
+
+    padding: 1rem 1rem;
+}

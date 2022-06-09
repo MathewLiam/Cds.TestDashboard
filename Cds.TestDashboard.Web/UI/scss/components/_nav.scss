@@ -1,10 +1,50 @@
 .nav {
     width: 100%;
-    border-bottom: 3px solid $teal;
+    background-color: $teal;
+    color: $white;
     
     &__title {
-        padding: 1rem;
+        position: relative;
         display: inline-block;
+        min-width: 230px;
+        justify-content: center;
+        text-align: center;
+
+        @include breakpoint(mobile) {
+            display: block;
+            min-height: 50px;
+        }
+
+        @include breakpoint(mobilerotate) {
+            display: block;
+            min-height: 50px;
+        }
+
+        @include breakpoint(tablet) {
+            display: block;
+            min-height: 50px;
+        }
+
+        img {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -75%);
+            max-height: 35px;
+            left: 50%;
+
+            @include breakpoint(mobile) {
+                transform: translate(-50%, -50%);
+            }
+
+            @include breakpoint(mobilerotate) {
+                transform: translate(-50%, -50%);
+            }
+
+            @include breakpoint(tablet) {
+                transform: translate(-50%, -50%);
+            }
+        }
+
     }
 
     &__tabs {
@@ -12,8 +52,18 @@
         flex-direction: row;
         justify-content: start;
 
+        @include breakpoint(mobile) {
+            display: flex;
+        }
+
         > div {
             padding: 1rem;
+            border-bottom: 4px solid $teal;
+            cursor: pointer;
+
+            &.active {
+                border-bottom: 4px solid $white;
+            }
         }
     }
 }

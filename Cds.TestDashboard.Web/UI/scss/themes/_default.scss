@@ -4,8 +4,9 @@ html * {
  
 body {
     overflow-x: hidden;
+    background-color: $grey-light;
 } 
 
 html, body {
-    min-height: 100vh;
+    min-height: 100%;
 }
