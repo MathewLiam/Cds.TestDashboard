@@ -1,0 +1,36 @@
+﻿@using Cds.TestDashboard.Core.Models.Pages;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<JenkinsBuildPage>
+@{
+    Layout = "~/Views/Master.cshtml";
+}
+
+<header>
+    <div class="header__title">
+        <h1>@Model.Build.FullDisplayName</h1>  
+        
+        <div class="header__title--actions">
+            <button class="btn btn-success">Build</button>
+        </div>
+    </div>
+    <div class="header__tabs">
+        <ul class="js-tab-collection" data-query-param="tab" data-content-area="main-content" >
+            <li class="js-tab @(Model.Tab == "overview" ? "active" : "")" data-query-value="overview" data-partial-url="@Url.Action("OverviewTab", "JenkinsBuild", new { jobName = Model.JobName, buildNumber = Model.Build.Number })">
+                <a href="@Url.Action("Index", "JenkinsBuild", new { jobName = Model.JobName, buildNumber = Model.Build.Number, Tab = "overview" })">Overview</a>
+            </li>
+            <li class="js-tab @(Model.Tab == "console" ? "active" : "")" data-query-value="console" data-partial-url="@Url.Action("ConsoleTab", "JenkinsBuild", new { jobName = Model.JobName, buildNumber = Model.Build.Number })">
+                <a href="@Url.Action("Index", "JenkinsBuild", new { jobName = Model.JobName, buildNumber = Model.Build.Number, Tab = "console" })">Console</a>
+            </li>
+        </ul>        
+    </div>
+</header>
+<div class="main-content" id="main-content">
+    
+    @if (Model.Tab.ToLower() == "overview")
+    {
+        <partial name="~/Views/Jenkins/Build/Partials/_overviewTab.cshtml" model="Model" />
+    } else if (Model.Tab.ToLower() == "console")
+    {
+        <partial name="~/Views/Jenkins/Build/Partials/_consoleTab.cshtml" model="Model" />
+    }
+        
+</div>

@@ -25,5 +25,9 @@ namespace Cds.TestDashboard.Core.Models.Pages
         public int SkipCount => Int32.Parse(((XElement)this.TestAction.Node).Element("skipCount").Value);
 
         public string ConsoleHtml { get; set; }
+
+        public string Tab { get; set; }
+
+        public string JobName { get; set; }
     }
 }

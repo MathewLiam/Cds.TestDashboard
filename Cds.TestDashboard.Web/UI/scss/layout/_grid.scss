@@ -10,6 +10,11 @@
 
     @for $i from 1 through 12 {
         .col-#{$i} {
+            
+            &:not(:last-child) {
+                margin-bottom: $gutter-size;        
+            }
+
             @include breakpoint(mobile) {
                 grid-column: span 12;
             }

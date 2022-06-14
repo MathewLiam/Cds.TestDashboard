@@ -56,9 +56,9 @@ namespace Cds.TestDashboard.Web.Controllers
             return null;
         }
 
-        [Route("{jobName}/{buildNumber}")]
+        [Route("[Controller]/{jobName}/{buildNumber}")]
         [HttpGet]
-        public async Task<IActionResult> Index(string jobName, int buildNumber, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<IActionResult> Index(string jobName, int buildNumber, string? tab = "overview", CancellationToken cancellationToken = default(CancellationToken))
         {
             if (string.IsNullOrWhiteSpace(jobName))
             {
@@ -67,11 +67,55 @@ namespace Cds.TestDashboard.Web.Controllers
 
             var build = await _jenkinsWorker.GetBuildAsync<JenkinsBuildBase>(jobName, buildNumber, cancellationToken);
 
-            var model = new JenkinsBuildPage(CurrentPage, _publishedValueFallback, build);
+            var model = new JenkinsBuildPage(CurrentPage, _publishedValueFallback, build)
+            {
+                ConsoleHtml = await _jenkinsWorker.GetBuildConsoleHtmlAsync(jobName, buildNumber, cancellationToken),
+                Tab = tab,
+                JobName = jobName,
+            };
 
-            model.ConsoleHtml = await _jenkinsWorker.GetBuildConsoleHtmlAsync(jobName, buildNumber, cancellationToken);
+            return View("~/Views/Jenkins/Build/JenkinsBuild.cshtml", model);
+        }
 
-            return View("~/Views/JenkinsBuild.cshtml", model);
+        [Route("[Controller]/{jobName}/{buildNumber}/OverviewTab")]
+        [HttpGet]
+        public async Task<IActionResult> OverviewTab(string jobName, int buildNumber, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if (string.IsNullOrWhiteSpace(jobName))
+            {
+                throw new ArgumentNullException(nameof(jobName));
+            }
+
+            var build = await _jenkinsWorker.GetBuildAsync<JenkinsBuildBase>(jobName, buildNumber, cancellationToken);
+
+            var model = new JenkinsBuildPage(CurrentPage, _publishedValueFallback, build)
+            {
+                ConsoleHtml = await _jenkinsWorker.GetBuildConsoleHtmlAsync(jobName, buildNumber, cancellationToken),
+                JobName = jobName,
+            };
+
+            return View("~/Views/Jenkins/Build/Partials/_overviewTab.cshtml", model);
+        }
+
+
+        [Route("[Controller]/{jobName}/{buildNumber}/ConsoleTab")]
+        [HttpGet]
+        public async Task<IActionResult> ConsoleTab(string jobName, int buildNumber, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            if (string.IsNullOrWhiteSpace(jobName))
+            {
+                throw new ArgumentNullException(nameof(jobName));
+            }
+
+            var build = await _jenkinsWorker.GetBuildAsync<JenkinsBuildBase>(jobName, buildNumber, cancellationToken);
+
+            var model = new JenkinsBuildPage(CurrentPage, _publishedValueFallback, build)
+            {
+                ConsoleHtml = await _jenkinsWorker.GetBuildConsoleHtmlAsync(jobName, buildNumber, cancellationToken),
+                JobName = jobName,
+            };
+
+            return PartialView("~/Views/Jenkins/Build/Partials/_consoleTab.cshtml", model);
         }
     }
 }
