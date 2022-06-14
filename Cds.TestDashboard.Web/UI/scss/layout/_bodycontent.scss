@@ -1,15 +1,12 @@
 main {
-    margin-top: 1rem;
+    margin-top: 55px;
+    padding-top: 1rem;
 
     @include breakpoint(largedesktop) {
         margin-left: 230px;
     }
 
     @include breakpoint(desktop) {
-        margin-left: 230px;
-    }
-
-    @include breakpoint(tablet) {
         margin-left: 230px;
     }
 

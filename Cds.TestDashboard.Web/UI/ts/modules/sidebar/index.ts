@@ -11,7 +11,6 @@ export default class SideBar {
 
 
     private setActiveTab() {
-        console.log(this.sidebarLinks);
         Array.from(this.sidebarLinks).forEach((link: HTMLAnchorElement) => {
             if (link.href == window.location.href || window.location.href.includes(link.href) && !this.activeLink) {
                 link.classList.toggle('active', true);

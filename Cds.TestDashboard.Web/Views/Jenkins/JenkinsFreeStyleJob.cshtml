@@ -1,0 +1,137 @@
+﻿@using JenkinsNET.Models
+@using Cds.TestDashboard.Core.Models.Pages
+@using Newtonsoft.Json 
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<JenkinsJobPage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    Layout = "~/Views/Master.cshtml";
+}
+
+<header>
+    <div class="container">
+        <h1>@Model.Name</h1>
+        
+        <partial name="_breadcrumb" />
+    </div>
+</header>
+
+<div class="main-content">
+    <section class="row">
+        <div class="col-2">
+            <div class="card card--default">
+                <div class="card__header">
+                    <h2>Most Recent Build</h2>
+                </div>
+                <div class="card__body">
+                    @{
+                        var chartId = Guid.NewGuid();
+                    }
+
+                    <script>
+                        window['chart-@chartId'] = {
+                            type: 'pie',
+                            data: {
+                                labels: [
+                                    'Failed',
+                                    'Passed',
+                                    'Skipped'
+                                ],
+                                datasets: [{
+                                    label: 'My First Dataset',
+                                    data: [@Model.LastBuild.PassCount, @Model.LastBuild.PassCount, @Model.LastBuild.SkipCount],
+                                    backgroundColor: [
+                                        'rgb(255, 99, 132)',
+                                        'rgb(54, 162, 235)',
+                                        'rgb(255, 205, 86)'
+                                    ],
+                                    hoverOffset: 4
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false
+                            }
+                        };
+                    </script>
+
+                    <div><canvas class="js-chart" data-config-id="chart-@chartId"></canvas></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-10">
+            <div class="card card--default">
+                <div class="card__header">
+                    <h2>Build Durations</h2>
+                </div>
+                <div class="card__body">
+                    @{
+                        var chart2Id = Guid.NewGuid();
+                        List<int> labels = new List<int>();
+                        List<long> values = new List<long>();
+
+                        foreach (var item in Model.Durations.OrderBy(m => m.Key))
+                        {
+                            labels.Add(item.Key);
+                            values.Add(item.Value);
+                        }
+                    }
+
+                    <script>
+                        window['chart-@chart2Id'] = {
+                            type: 'line',
+                            data: {
+                                labels: @JsonConvert.SerializeObject(labels),
+                                datasets: [{
+                                    label: 'My First Dataset',
+                                    data: @JsonConvert.SerializeObject(values),
+                                    fill: false,
+                                    borderColor: 'rgb(75, 192, 192)',
+                                    tension: 0.1
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false
+                            }
+                        };
+                    </script>
+                    <div style="position: relative; min-width: 30vw; height: 30vh;"><canvas class="js-chart" data-config-id="chart-@chart2Id"></canvas></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="row">
+        <div class="col-12">
+            <div class="card card--default">
+                <div class="card__header">
+                    <h2>Builds</h2>
+                </div>
+                <div class="card__body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var build in ((JenkinsFreeStyleJob)Model.Job).Builds)
+                            {
+                                <tr>
+                                    <td>
+                                        Build @build.Number
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("Index", "JenkinsBuild", new { jobName = Model.Job.Name, buildNumber = build.Number })">link</a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

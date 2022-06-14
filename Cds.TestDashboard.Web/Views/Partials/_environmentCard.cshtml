@@ -12,10 +12,10 @@
         <div class="card-back">
             @for (var i = 0; i < 4; i++)
             {
-                if (i < Model.Children<ContentModels.Job>().Count())
+                if (i < Model.Children().Count())
                 {
-                    <a href="@(((IPublishedContent)Model.Children<ContentModels.Job>().ToList().ElementAt(i)).Url())" class="card-back_item">
-                        <div class="environment-card_content u-centre">@(((IPublishedContent)Model.Children<ContentModels.Job>().ToList().ElementAt(i)).Name)</div>
+                    <a href="@(((IPublishedContent)Model.Children().ToList().ElementAt(i)).Url())" class="card-back_item">
+                        <div class="environment-card_content u-centre">@(((IPublishedContent)Model.Children().ToList().ElementAt(i)).Name)</div>
                     </a>
                 } else
                 {

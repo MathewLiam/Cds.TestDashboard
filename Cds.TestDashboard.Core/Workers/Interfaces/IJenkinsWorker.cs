@@ -1,13 +1,20 @@
 ﻿namespace Cds.TestDashboard.Core.Workers.Interfaces
 {
-    using JenkinsClient;
+    using JenkinsNET.Models;
     using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
 
     public interface IJenkinsWorker
     {
-        Task<List<Job>> GetAsync();
+        Task<JenkinsJobBase> GetJobAsync(string jobName, CancellationToken cancellationToken = default(CancellationToken));
 
-        Job GetJob(string jobName);
+        Task<IDictionary<int, long>> GetDurationsAsync(string jobName, CancellationToken cancellationToken = default(CancellationToken));
+
+        Task<T> GetJobAsync<T>(string jobName, CancellationToken cancellationToken = default(CancellationToken)) where T : JenkinsJobBase;
+
+        Task<T> GetBuildAsync<T>(string jobName, int buildNumber, CancellationToken cancellationToken = default(CancellationToken)) where T : JenkinsBuildBase;
+
+        Task<string> GetBuildConsoleHtmlAsync(string jobName, int buildNumber, CancellationToken cancellationToken = default(CancellationToken));
     }
 }

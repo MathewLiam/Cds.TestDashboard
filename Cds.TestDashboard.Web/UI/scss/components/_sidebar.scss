@@ -1,13 +1,22 @@
 .sidebar {
     height: 100%;
     min-width: 230px;
-    position: absolute;
+    position: fixed;
+    top: 55px;
     z-index: 1;
     left: 0;
     background-color: $grey-dark;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
+
+    @include breakpoint(tablet) {
+      display: none;
+      
+      &.active {
+        display: flex;
+      }
+    }
 
     @include breakpoint(mobilerotate) {
       display: none;

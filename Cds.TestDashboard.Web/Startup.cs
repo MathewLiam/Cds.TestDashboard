@@ -1,4 +1,10 @@
 using System;
+using Cds.TestDashboard.Core.Config;
+using Cds.TestDashboard.Core.Factories;
+using Cds.TestDashboard.Core.Factories.Interfaces;
+using Cds.TestDashboard.Core.Workers;
+using Cds.TestDashboard.Core.Workers.Interfaces;
+using JenkinsNET;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -43,6 +49,10 @@ namespace Cds.TestDashboard.Web
                 .AddWebsite()
                 .AddComposers()
                 .Build();
+
+            services.AddScoped<IJenkinsClientFactory, JenkinsClientFactory>();
+            services.AddScoped<IJenkinsWorker, JenkinsWorker>();
+            services.AddScoped<IHtmlWorker, HtmlWorker>();
         }
 
         /// <summary>
@@ -69,6 +79,12 @@ namespace Cds.TestDashboard.Web
                         "accounts",
                         "/account/{action}/{id?}",
                         new { Controller = "Account", Action = "Index" }
+                        );
+
+                    u.EndpointRouteBuilder.MapControllerRoute(
+                        "jenkins-build",
+                        "/build/{action}/{id?}",
+                        new { Controller = "JenkinsBuild", Action = "Index" }
                         );
 
                     u.UseInstallerEndpoints();

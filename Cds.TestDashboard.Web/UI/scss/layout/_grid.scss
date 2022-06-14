@@ -19,11 +19,11 @@
             }
 
             @include breakpoint(tablet) {
-                grid-column: span 12;
+                grid-column: span calc($i * 2);
             }
 
             @include breakpoint(desktop) {
-                grid-column: span $i;
+                grid-column: span calc($i * 2);
             }
 
             @include breakpoint(largedesktop) {
@@ -47,7 +47,7 @@
     }
 
     @include breakpoint(tablet) {
-        max-width: 75vw;   
+        margin: 0 1rem;   
     }
 
     @include breakpoint(mobile) {

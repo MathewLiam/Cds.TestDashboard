@@ -1,0 +1,33 @@
+.card {
+    min-height: 100px;
+
+    &--default {
+        background-color: $white;
+        color: black;
+        border-bottom: 1px solid $teal;
+    }
+
+    &--primary {
+        background-color: $teal;
+        color: $white;
+    }
+
+    &--secondary {
+        background-color: $grey-dark;
+        color: $white;
+    }
+
+    &__header {
+        @extend .container;
+
+        padding: 1rem;
+        border-bottom: 1px solid black;
+    }
+
+    &__body {
+        @extend .container;
+        padding: 1rem;
+    }
+
+
+}
